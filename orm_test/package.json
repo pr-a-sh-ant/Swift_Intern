@@ -1,0 +1,28 @@
+{
+  "name": "orm_test",
+  "version": "1.0.0",
+  "description": "orm test",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ghost",
+  "license": "ISC",
+  "dependencies": {
+    "-": "^0.0.1",
+    "@prisma/client": "^6.9.0",
+    "bcrypt": "^6.0.0",
+    "express": "^5.1.0",
+    "express-mysql-session": "^3.0.3",
+    "express-session": "^1.18.1",
+    "jsonwebtoken": "^9.0.2",
+    "nodemon": "^3.1.10",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "prisma": "^6.9.0",
+    "save-dev": "^0.0.1-security"
+  }
+}
