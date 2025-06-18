@@ -56,6 +56,11 @@ const login = async (req, res) => {
       expiresIn: config.jwt.expiresIn,
     });
 
+    res.cookie("jwt", token, {
+      httpOnly: true,
+      maxAge: 60 * 60 * 1000, // 1 hour
+    });
+
     res.status(200).json({
       status: "success",
       data: {
@@ -64,7 +69,6 @@ const login = async (req, res) => {
           name: user.name,
           email: user.email,
         },
-        token,
       },
     });
   } catch (error) {
@@ -75,6 +79,28 @@ const login = async (req, res) => {
   }
 };
 
-const authController = { register, login };
+const protect = (req, res, next) => {
+  const token = req.cookies.jwt;
+
+  if (!token) {
+    return res.status(401).json({
+      status: "fail",
+      message: "You are not logged in! Please log in to get access.",
+    });
+  }
+
+  try {
+    const decoded = jwt.verify(token, config.jwt.secret);
+    req.user = decoded;
+    next();
+  } catch (error) {
+    res.status(401).json({
+      status: "fail",
+      message: "Invalid token. Please log in again.",
+    });
+  }
+};
+
+const authController = { register, login, protect };
 
 export default authController;
