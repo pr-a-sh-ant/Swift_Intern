@@ -1,0 +1,36 @@
+syntax = "porto3"
+
+import "google/protobuf/timestamp.proto";
+
+service UserService{
+    rpc Login(LoginRequest) returns (UserResponse) {}
+    rpc Register(RegisterRequest) returns (UserResponse) {}
+}
+
+message User {
+    int32 id = 1;
+    string name = 2;
+    string email = 3;
+    string password = 4;
+    google.protobuf.Timestamp createdAt = 5;
+    google.protobuf.Timestamp updatedAt = 6;
+}
+
+message RegisterRequest {
+    string name = 1;
+    string email = 2;
+    string password = 3;
+}
+
+message LoginRequest{
+    string email = 1;
+    string password = 2;
+}
+
+
+message UserResponse {
+    int32 id = 1;
+    string name = 2;
+    string email = 3;
+    string token = 4;
+}

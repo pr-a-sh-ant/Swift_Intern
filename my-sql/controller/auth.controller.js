@@ -1,8 +1,8 @@
-import express from "express";
+import * as grpc from "@grpc/grpc-js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import config from "../config/config.mjs";
-import Auth from "../model/auth.model.mjs";
+import config from "../config/config.js";
+import Auth from "../model/auth.model.js";
 
 const register = async (req, res) => {
   const { name, email, password } = req.body;
@@ -18,16 +18,20 @@ const register = async (req, res) => {
     };
     const user = await Auth.createUser(userDetail);
 
-    res.status(201).json({
-      status: "success",
-      data: {
-        user,
-      },
+    const token = jwt.sign({ id: user.id }, config.jwt.secret, {
+      expiresIn: config.jwt.expiresIn,
+    });
+
+    res(null, {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      token,
     });
   } catch (error) {
-    res.status(400).json({
-      status: "fail",
-      message: error.message,
+    res({
+      code: grpc.status.INTERNAL,
+      message: err.message,
     });
   }
 };

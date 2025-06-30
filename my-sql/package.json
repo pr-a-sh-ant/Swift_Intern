@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "using mysql",
   "main": "server.js",
+  "types": "module",
   "scripts": {
     "dev": "nodemon server.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,6 +11,7 @@
   "author": "ghost",
   "license": "ISC",
   "dependencies": {
+    "@grpc/grpc-js": "^1.13.4",
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",
     "cookie-parser": "^1.4.7",

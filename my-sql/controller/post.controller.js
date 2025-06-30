@@ -1,4 +1,5 @@
-import postModel from "../model/post.model.mjs";
+import postModel from "../models/post.model.js";
+import * as grpc from "@grpc/grpc-js";
 
 const createPost = async (req, res) => {
   const { title, content } = req.body;
@@ -15,7 +16,7 @@ const createPost = async (req, res) => {
 
     const post = await postModel.createPost(postDetail);
 
-    res.status(201).json({
+    res(null, grpc.status.OK, {
       status: "success",
       data: {
         post,

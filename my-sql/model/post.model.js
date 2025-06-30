@@ -1,4 +1,4 @@
-import pool from "../db/connect.mjs";
+import pool from "../db/connect.js";
 import mysql from "mysql2/promise";
 
 const createPost = async (postDetail) => {

@@ -1,6 +1,6 @@
 import { Router } from "express";
-import postController from "../controller/post.controller.mjs";
-import authController from "../controller/auth.controller.mjs";
+import postController from "../controller/post.controller.js";
+import authController from "../controller/auth.controller.js";
 
 const postRouter = Router();
 

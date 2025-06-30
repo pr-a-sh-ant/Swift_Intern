@@ -1,5 +1,4 @@
-"use strict";
-
+// 20250620-create-users.mjs
 /** @type {import('sequelize-cli').Migration} */
 export default {
   async up(queryInterface, Sequelize) {
@@ -9,15 +8,17 @@ export default {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable("Users", {
+
+    await queryInterface.createTable("users", {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      name: {
+      username: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
       },
       email: {
         type: Sequelize.STRING,
@@ -27,16 +28,6 @@ export default {
       password: {
         type: Sequelize.STRING,
         allowNull: false,
-      },
-      createdAt: {
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.NOW,
-      },
-      updatedAt: {
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.NOW,
       },
     });
   },
@@ -48,6 +39,6 @@ export default {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.dropTable("Users");
+    await queryInterface.dropTable("users");
   },
 };

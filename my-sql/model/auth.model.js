@@ -1,5 +1,4 @@
-import { col } from "sequelize";
-import pool from "../db/connect.mjs";
+import pool from "../db/connect.js";
 import mysql from "mysql2/promise";
 
 const createUser = async (userDetail) => {
